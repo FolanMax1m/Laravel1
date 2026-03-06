@@ -1,31 +1,31 @@
 <?php
 
-register_shutdown_function(function() {
-    $error = error_get_last();
-    // Фільтруємо: показуємо екран ТІЛЬКИ для справжніх фатальних помилок
-    $fatalErrors = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR];
-    
-    if ($error !== null && in_array($error['type'], $fatalErrors)) {
-        http_response_code(500);
-        echo "<div style='background:#222; color:#ff6b6b; padding:20px; font-family:monospace;'>";
-        echo "<h2>🚨 СПРАВЖНЯ ФАТАЛЬНА ПОМИЛКА:</h2><pre>";
-        print_r($error);
-        echo "</pre></div>";
-    }
-});
-
-ini_set('display_errors', '1');
-error_reporting(E_ALL);
-
-// Примусові налаштування для Serverless
-putenv('SESSION_DRIVER=cookie');
-$_ENV['SESSION_DRIVER'] = 'cookie';
-
-putenv('CACHE_STORE=array');
-$_ENV['CACHE_STORE'] = 'array';
-
-putenv('LOG_CHANNEL=stderr');
-$_ENV['LOG_CHANNEL'] = 'stderr';
+#register_shutdown_function(function() {
+#    $error = error_get_last();
+#    // Фільтруємо: показуємо екран ТІЛЬКИ для справжніх фатальних помилок
+#    $fatalErrors = [E_ERROR, E_PARSE, E_CORE_ERROR, E_COMPILE_ERROR, E_USER_ERROR];
+#    
+#    if ($error !== null && in_array($error['type'], $fatalErrors)) {
+#        http_response_code(500);
+#        echo "<div style='background:#222; color:#ff6b6b; padding:20px; font-family:monospace;'>";
+#        echo "<h2>🚨 СПРАВЖНЯ ФАТАЛЬНА ПОМИЛКА:</h2><pre>";
+#        print_r($error);
+#        echo "</pre></div>";
+#    }
+#});
+#
+#ini_set('display_errors', '1');
+#error_reporting(E_ALL);
+#
+#// Примусові налаштування для Serverless
+#putenv('SESSION_DRIVER=cookie');
+#$_ENV['SESSION_DRIVER'] = 'cookie';
+#
+#putenv('CACHE_STORE=array');
+#$_ENV['CACHE_STORE'] = 'array';
+#
+#putenv('LOG_CHANNEL=stderr');
+#$_ENV['LOG_CHANNEL'] = 'stderr';
 
 // Створення тимчасової структури у дозволеній папці /tmp
 $tmpPath = '/tmp/laravel';

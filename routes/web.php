@@ -20,15 +20,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/setup-database-secret-url', function () {
-    try {
-        // migrate:fresh видалить всі існуючі таблиці (навіть "зламані") 
-        // і запустить міграції з самого початку
-        Artisan::call('migrate:fresh', ['--force' => true]);
-        return 'Базу успішно очищено та створено наново: <br><pre>' . Artisan::output() . '</pre>';
-    } catch (\Exception $e) {
-        return 'Помилка: ' . $e->getMessage();
-    }
-});
+#Route::get('/setup-database-secret-url', function () {
+#    try {
+#        // migrate:fresh видалить всі існуючі таблиці (навіть "зламані") 
+#        // і запустить міграції з самого початку
+#        Artisan::call('migrate:fresh', ['--force' => true]);
+#        return 'Базу успішно очищено та створено наново: <br><pre>' . Artisan::output() . '</pre>';
+#    } catch (\Exception $e) {
+#        return 'Помилка: ' . $e->getMessage();
+#    }
+#});
 
 require __DIR__.'/auth.php';
