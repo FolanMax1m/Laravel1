@@ -1,3 +1,4 @@
+<?php
 $error = error_get_last();
     if ($error !== null) {
         echo "<div style='background:#222; color:#ff6b6b; padding:20px; font-family:monospace;'>";
