@@ -21,8 +21,10 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/setup-database-secret-url', function () {
     try {
-        Artisan::call('migrate', ['--force' => true]);
-        return 'Міграції успішно виконані: <br><pre>' . Artisan::output() . '</pre>';
+        // migrate:fresh видалить всі існуючі таблиці (навіть "зламані") 
+        // і запустить міграції з самого початку
+        Artisan::call('migrate:fresh', ['--force' => true]);
+        return 'Базу успішно очищено та створено наново: <br><pre>' . Artisan::output() . '</pre>';
     } catch (\Exception $e) {
         return 'Помилка: ' . $e->getMessage();
     }
